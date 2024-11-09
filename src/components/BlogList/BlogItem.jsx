@@ -68,7 +68,7 @@ BlogItem.propTypes = {
     id:PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    desc: PropTypes.string.isRequired,
+    
     date: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,

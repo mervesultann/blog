@@ -3,7 +3,6 @@ import Spacer from "../Spacer/Spacer"
 import "./AddNewBlog.scss"
 import Button from "../../UI/Button";
 import PropTypes from "prop-types";
-
 function AddNewBlog({setBlogs, blogs}) {
 
 
@@ -25,9 +24,19 @@ function handleChange(e){
 
 }
 
+
+const [isFormValid, setIsFormValid] = useState(true);
+
 function handleSubmit(e){
   e.preventDefault();
 
+  const isFormValid = Object.values(blog).every((value) => value.trim() !== '');
+  setIsFormValid(isFormValid);
+
+  if(!isFormValid){
+ 
+    return;
+    }
   const newBlog = {
     id:Math.random(),
     ...blog,
@@ -83,7 +92,7 @@ function handleSubmit(e){
   <input type="date" name="date"   onChange={handleChange}/>
 </div>
 
-
+{!isFormValid && <label style={{color:"red"}}>Boş alanları doldurunuz!</label>}
 <Button color="success">Yeni Yazı Ekle</Button>
 </form>
 
