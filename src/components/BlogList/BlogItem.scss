@@ -67,11 +67,20 @@ h2{
        
         
         }
+
+        .update-blog{
+            display: none;
+           
+            
+            }
     }
 }
 
 .blog-item:hover {
     .delete-blog {
+        display: block; // Hover olduğunda görünür yap
+    }
+    .update-blog {
         display: block; // Hover olduğunda görünür yap
     }
 }
@@ -80,6 +89,6 @@ h2{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: blue;
+    color: rgb(80, 80, 81);
 }
 

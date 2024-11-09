@@ -46,10 +46,15 @@ function BlogItem(props) {
   </div>
 
 <div className="blog-button">
-  <Button color="primary" > Devmını Oku</Button>
+  {/* <Button color="primary" > Devmını Oku</Button> */}
 
 <div className="delete-blog">
 <Button color="danger"  onClick={()=>props.handleDelete(props.id)}>Sil</Button>
+
+</div>
+
+<div className="update-blog">
+<Button color="success" onClick={()=>props.handleUpdate(props.id)}>Düzenle</Button>
 
 </div>
 
@@ -73,6 +78,7 @@ BlogItem.propTypes = {
     author: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
     handleDelete:PropTypes.func.isRequired,
+    handleUpdate:PropTypes.func.isRequired,
     blog:PropTypes.object.isRequired
   };
 

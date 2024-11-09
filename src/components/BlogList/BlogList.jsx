@@ -3,21 +3,33 @@ import { blogData } from "../../data/blogData";
 import "./BlogList.scss";
 import AddNewBlog from "./AddNewBlog";
 import { useState } from "react";
+import Modal from "../../UI/Modal";
 
 const BlogList = () => {
   const [blogs, setBlogs] = useState(blogData);
   const [searchTerm, setSearchTerm] = useState("");
-
+  const [showModal, setShowModal]=useState(false);
+  const [currentBlog, setCurrentBlog] = useState(null);
   
   const handleDelete = (id) => { 
 
     const newBlogs = blogs.filter((item) => item.id !== id);
      setBlogs(newBlogs);
 
-
-
-
    }
+
+const handleUpdate = (blog)=>{
+  setCurrentBlog(blog)
+  setShowModal(true)
+}
+
+
+const handleSave = (updatedBlog) => {
+  const updatedBlogs = blogs.map((blog) =>
+    blog.id === updatedBlog.id ? updatedBlog : blog
+  );
+  setBlogs(updatedBlogs);
+};
 
   function filteredAuthor() {
     const sortedByAuthor = [...blogs].sort((a, b) =>
@@ -67,6 +79,10 @@ const BlogList = () => {
 
           <div className="bloglist-wrap">
            
+         {showModal && <Modal setShowModal={setShowModal}
+                 currentBlog={currentBlog} 
+                 onSave={handleSave}  
+         /> }  
 
             {filteredBlogs.length > 0 ? (
               filteredBlogs.map((blog) => (
@@ -81,6 +97,8 @@ const BlogList = () => {
                   author={blog.author}
                   handleDelete={handleDelete}
                   blog={blog}
+                  // handleUpdate={handleUpdate}
+                  handleUpdate={() => handleUpdate(blog)}
                 />
               ))
             ) : (
