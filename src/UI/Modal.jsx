@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 const Modal = ({ setShowModal, currentBlog, onSave }) => {
   const [updatedBlog, setUpdatedBlog] = useState(currentBlog || {});
 
-  // Modal her açıldığında currentBlog'u updatedBlog state’ine kopyala
+ 
   useEffect(() => {
     setUpdatedBlog(currentBlog);
   }, [currentBlog]);
@@ -17,13 +17,14 @@ const Modal = ({ setShowModal, currentBlog, onSave }) => {
   };
 
   const handleSave = () => {
-    onSave(updatedBlog); // Güncellemeyi kaydetmek için BlogList'teki onSave işlevini çağırıyoruz
+    onSave(updatedBlog); 
     setShowModal(false);
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-container">
+    <div className="modal-overlay" >
+        <div className="modal-bg" onClick={() => setShowModal(false)}></div>
+      <div className="modal-container"  >
         <div className="modal-header">
           <h2>Blog Güncelle</h2>
           <button className="close-button" onClick={() => setShowModal(false)}>
@@ -70,13 +71,14 @@ const Modal = ({ setShowModal, currentBlog, onSave }) => {
             onChange={handleChange}
             placeholder="Author"
           />
-          {/* Diğer alanları da buraya ekleyebilirsiniz */}
+          
         </div>
         <div className="modal-footer">
           <Button color={"danger"} onClick={() => setShowModal(false)}>İptal</Button>
           <Button color={"success"} onClick={handleSave}>Güncelle</Button>
         </div>
       </div>
+      
     </div>
   );
 };
